@@ -18,6 +18,7 @@ One of the significant challenges in healthcare is accurate and timely diagnosis
 The BraTS 2020 dataset [2-4], comprising high-quality 3D MRI images with meticulously annotated sub-regions, is the primary data source. It comprises high-quality 3D MRI images with meticulously annotated sub-regions. Developed as part of the Multimodal Brain Tumor Segmentation Challenge, the Brats 2020 dataset incorporates high-quality magnetic resonance imaging (MRI) scans. It included files in .nii format (Neuroimaging Informatics Technology Initiative files - NIfTI), which stores volumetric data, such as three-dimensional images obtained from imaging modalities like magnetic resonance imaging (MRI) or computed tomography (CT). For each patient, we are provided with different modalities, such as T1-weighted, T1-weighted contrast-enhanced, T2-weighted, and FLAIR (Fluid Attenuated Inversion Recovery), offering a multi-faceted view of brain structures and abnormalities.  
 
 [![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)](https://github.com/utkarsh231/Transfer-Learning-Approach-to-optimize-3D-Brain-MRI-Segmentation/blob/main/images/patient1.png)
+
 Figure representing T1, T2, T1ce, Flair and Mask Slices for patient001.
 
 ## References 
