@@ -19,7 +19,7 @@ The BraTS 2020 dataset [2-4], comprising high-quality 3D MRI images with meticul
 
 ![images/patient1.png](https://github.com/utkarsh231/Transfer-Learning-Approach-to-optimize-3D-Brain-MRI-Segmentation/blob/dcbf2e0018733b145c039acc7ba110c3958f39bd/images/patient1.png)
 
-*Figure 1 representing T1, T2, T1ce, Flair and Mask Slices for patient001.*
+_Figure 1 representing T1, T2, T1ce, Flair and Mask Slices for patient001._
 
 ### Model Details
 
@@ -27,7 +27,7 @@ We employ the U-Net architecture, specifically designed for biomedical image seg
 
 ![images/3dunet.png](https://github.com/utkarsh231/Transfer-Learning-Approach-to-optimize-3D-Brain-MRI-Segmentation/blob/0aeea6423cdd13ad877d603408292103770600b0/images/3dunet.png)
 
-*Figure 2: Architecture design of 3D U-Net architecture.*
+_Figure 2: Architecture design of 3D U-Net architecture._
 
 ## Project milestones 
 
@@ -39,18 +39,18 @@ The Data Preparation involves several steps to prepare the dataset ready for tra
 
 ![images/split.png](https://github.com/utkarsh231/Transfer-Learning-Approach-to-optimize-3D-Brain-MRI-Segmentation/blob/646ee6198251984c69152fd4e035adea6721a3ba/images/split.png)
 
-*Figure 3: Bar Graph representing distribution of training, validation and testing data subsets.*
+_Figure 3: Bar Graph representing distribution of training, validation and testing data subsets._
 
 ### Model Training
 The dataset then, was fed into 3D Unet architecture for training. The model was trained on 35 epochs. Adam optimizer was used to train the model with  categorical crossentropy as loss function. The performance was measured on following evaluation metrics - accuracy, loss, precision, sensitivity (a measure of the ability of a segmentation algorithm to correctly identify positive instances), specificity (a measure of the ability of a segmentation algorithm to correctly identify negative instances), dice coefficient (a measure of the spatial overlap between two binary images), and mean iou (it measures the similarity between the predicted segmentation and the ground truth segmentation of an image).  Figure 4 represents tabular scores obtained after training the model. The weights of the model is then saved in an .h5 file for using the further in the project. Figure 5 represents training and validation loss and accuracy plots during training.
 
 ![images/results%20after%20training.png](https://github.com/utkarsh231/Transfer-Learning-Approach-to-optimize-3D-Brain-MRI-Segmentation/blob/c03149ae6fa1078eb6a53eebb5394b173cbc6134/images/results%20after%20training.png)
 
-*Figure 4: Training and Validation scores after training the model.*
+_Figure 4: Training and Validation scores after training the model._
 
 ![images/traingraph.png](https://github.com/utkarsh231/Transfer-Learning-Approach-to-optimize-3D-Brain-MRI-Segmentation/blob/c03149ae6fa1078eb6a53eebb5394b173cbc6134/images/traingraph.png)
 
-*Figure 5: Plots representing Training vs validation accuracy and loss curve.*
+_Figure 5: Plots representing Training vs validation accuracy and loss curve._
 
 ### Weights download and transfer learning
 
