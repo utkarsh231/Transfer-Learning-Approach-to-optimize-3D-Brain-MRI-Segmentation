@@ -29,6 +29,54 @@ We employ the U-Net architecture, specifically designed for biomedical image seg
 
 Figure 2: Architecture design of 3D U-Net architecture.
 
+## Project milestones 
+
+This project is structured around four key milestones: Data Preparation, Model Training, Weights Download and Transfer, and Training on a New Dataset.
+
+### Data Preparation
+
+The Data Preparation involves several steps to prepare the dataset ready for training. The data preparation began with reading the BraTS 2020 dataset which comprised of high-quality 3D MRI images with meticulously annotated sub-regions. It included files in .nii format (Neuroimaging Informatics Technology Initiative files - NIfTI), which stores volumetric data, such as three-dimensional images obtained from imaging modalities like magnetic resonance imaging (MRI) or computed tomography (CT). To use the dataset properly for 3D-segmentation, different modalities of a patient needed to be combined together before feeding it to the model. For the initial state of model training, modalities FLAIR and T1CE were zipped together using data generator. The dataset was then divided into three categories - train, validation and test as shown in figure 3.
+
+![images/split.png](https://github.com/utkarsh231/Transfer-Learning-Approach-to-optimize-3D-Brain-MRI-Segmentation/blob/646ee6198251984c69152fd4e035adea6721a3ba/images/split.png)
+
+Figure 3: Bar Graph representing distribution of training, validation and testing data subsets.
+
+### Model Training
+The dataset then, was fed into 3D Unet architecture for training. The model was trained on 35 epochs. Adam optimizer was used to train the model with  categorical crossentropy as loss function. The performance was measured on following evaluation metrics - accuracy, loss, precision, sensitivity (a measure of the ability of a segmentation algorithm to correctly identify positive instances), specificity (a measure of the ability of a segmentation algorithm to correctly identify negative instances), dice coefficient (a measure of the spatial overlap between two binary images), and mean iou (it measures the similarity between the predicted segmentation and the ground truth segmentation of an image).  Figure 4 represents tabular scores obtained after training the model. The weights of the model is then saved in an .h5 file for using the further in the project. Figure 5 represents training and validation loss and accuracy plots during training.
+
+![images/results%20after%20training.png](https://github.com/utkarsh231/Transfer-Learning-Approach-to-optimize-3D-Brain-MRI-Segmentation/blob/c03149ae6fa1078eb6a53eebb5394b173cbc6134/images/results%20after%20training.png)
+
+Figure 4: Training and Validation scores after training the model.
+
+![images/traingraph.png](https://github.com/utkarsh231/Transfer-Learning-Approach-to-optimize-3D-Brain-MRI-Segmentation/blob/c03149ae6fa1078eb6a53eebb5394b173cbc6134/images/traingraph.png)
+
+Figure 5: Plots representing Training vs validation accuracy and loss curve.
+
+### Weights download and transfer learning
+
+We propose an intriguing approach of transfer learning among the MRI Modalities to help in the domain generalization of the final model. Different MRI modalities refer to various imaging sequences or pulse sequences that emphasize different tissue contrasts or highlight specific characteristics. We first train the model on the 'T1-FLAIR' and 'T1CE' zipped together, and later freeze learnt weights. In the second phase of our work we hypothesize the transfer of these learnt weights to be fine tune them further with other two modalities - 'T1 weighted' and 'T2 weighted'. This helps us reduce the training data in one go and hence improving the training metrics. 
+
+### Training on new dataset
+For tuning the final layers of the model on 'T1 weighted' and 'T2 weighted' there are some considerations to be made to ensure that the utility of transfer learning is overall beneficial and justified. Some of these include - 
+
+**Domain Shift**:
+If there is a significant domain shift between the training modalities and the target modalities, the effectiveness of transfer learning may be reduced. Domain adaptation techniques might be necessary to mitigate this challenge. We can employ methods like t-SNE, Domain Confusion Loss and covariance shift to measure the shifts. 
+
+**Data Availability**:
+Sufficient labeled data for the target modalities is crucial for effective transfer learning. If there is a lack of labeled data for the target modalities, it might be challenging to adapt the model successfully.
+
+**Shared Information**:
+Transfer learning assumes that the model has learned useful representations that are applicable across different modalities. If the information learned from the initial two modalities is not transferable or relevant to the other two modalities, the effectiveness of transfer learning may be limited. This bounds us to use the same set of patients having the data for all four modalities so that they can be consistent in the two datasets involved.
+
+One example in the medical imaging domain where transfer learning has been applied across different modalities involves the use of pre-trained models on natural images to improve performance on medical image analysis tasks. The characteristics of natural images and medical images can differ significantly. However, the low-level features learned during pre-training can be useful in extracting relevant patterns in medical images. In such tasks domain adaptation might still be required to ensure that the transfer learning process does not reduce the performance. However, in our use case, since we target to use modalities of the same patient groups, the domain does not differ by large and hence there is a definitive improvement in performance by transfer of learnt features. 
+
+## Description of the repository
+
+## Example commands to execute the code 
+Download the .ipynb file and run all the cells.
+
+## Results
+
 
 ## References 
 [1] O. Ronneberger, P. Fischer, and T. Brox, “U-NET: Convolutional Networks for Biomedical Image Segmentation,” in Lecture Notes in Computer Science, 2015, pp. 234–241. doi: 10.1007/978-3-319-24574-4_28
