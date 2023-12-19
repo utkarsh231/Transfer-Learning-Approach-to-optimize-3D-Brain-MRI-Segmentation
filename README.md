@@ -41,6 +41,30 @@ The Data Preparation involves several steps to prepare the dataset ready for tra
 
 _Figure 3: Bar Graph representing distribution of training, validation and testing data subsets._
 
+### Domain Shift Measurement Function
+![images/PCA%20analysis.png](https://github.com/utkarsh231/Transfer-Learning-Approach-to-optimize-3D-Brain-MRI-Segmentation/blob/main/images/PCA%20analysis.png)
+
+
+![images/TSNE%20analysis.png](https://github.com/utkarsh231/Transfer-Learning-Approach-to-optimize-3D-Brain-MRI-Segmentation/blob/main/images/TSNE%20analysis.png)
+
+Inputs:
+
+**X and Y**: Numpy arrays representing two sets of samples. They have shapes (n_samples, n_features).
+kernel: The kernel function to be used, with options for 'rbf' (Radial basis function), 'linear', etc.
+gamma: Parameter for the 'rbf' kernel. It is ignored for other kernels.
+batch_size: Batch size for batch-wise computation of kernel matrices.
+Outputs:
+
+**mmd**: Maximum Mean Discrepancy between the two sets of samples.
+Details:
+
+The function iterates over the samples in batches for both sets (X and Y).
+For each batch, it computes the kernel matrices (K_XX, K_YY, and K_XY) based on the chosen kernel function.
+If the kernel is 'rbf', the Radial Basis Function (RBF) kernel is computed using the rbf_kernel function.
+If the kernel is 'linear', the linear kernel is computed using dot products.
+The MMD is then updated based on these kernel matrices.
+The final MMD is the sum of contributions from all batches.
+
 ### Model Training
 The dataset then, was fed into 3D Unet architecture for training. The model was trained on 35 epochs. Adam optimizer was used to train the model with  categorical crossentropy as loss function. The performance was measured on following evaluation metrics - accuracy, loss, precision, sensitivity (a measure of the ability of a segmentation algorithm to correctly identify positive instances), specificity (a measure of the ability of a segmentation algorithm to correctly identify negative instances), dice coefficient (a measure of the spatial overlap between two binary images), and mean iou (it measures the similarity between the predicted segmentation and the ground truth segmentation of an image).  Figure 4 represents tabular scores obtained after training the model. The weights of the model is then saved in an .h5 file for using the further in the project. Figure 5 represents training and validation loss and accuracy plots during training.
 
@@ -75,7 +99,7 @@ One example in the medical imaging domain where transfer learning has been appli
 The repository contains:- 
 
 1. **get_data_ready.ipynb** : This ipynb file contains the code responsible for initial part of the project, ie, reading the dataset, visualizing and defining and training on 3D UNet architecture. The file also returns "model_x1_1.h5" file, which contains the saved model parameters. This file will be transferred and used for the next part of the project.
-2. **domain-shift-analysis.ipynb**:
+2. **domain-shift-analysis.ipynb**: The function `maximum_mean_discrepancy` calculates the domain shift between two modalities used for UNet Training (T1CE and Flair) vs the two modalities that will be used for fine-tuning (T1 and T2). 
 3. **TransferLearning.ipynb** : This file trains the dataset using the generated h5 file in previous part. The certain amount of initial layers are frozen. The model trains on different modalities than those used before on get_data_ready.ipynb.
 4. **Profiling Folder**: The folder is further divided into 2 subfolders which contains profiling json files obtained during training first(get_data_ready.ipynb) and latter part(TransferLearning.ipynb). The folders also contains screenshot from different instances.
 ## Example commands to execute the code 
@@ -83,6 +107,7 @@ Download the .ipynb file and run all the cells.
 
 ## Results
 
+![images/results.png]
 
 ## References 
 [1] O. Ronneberger, P. Fischer, and T. Brox, “U-NET: Convolutional Networks for Biomedical Image Segmentation,” in Lecture Notes in Computer Science, 2015, pp. 234–241. doi: 10.1007/978-3-319-24574-4_28
