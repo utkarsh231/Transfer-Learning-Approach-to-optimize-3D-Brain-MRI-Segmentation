@@ -72,6 +72,12 @@ One example in the medical imaging domain where transfer learning has been appli
 
 ## Description of the repository
 
+The repository contains:- 
+
+1. **get_data_ready.ipynb** : This ipynb file contains the code responsible for initial part of the project, ie, reading the dataset, visualizing and defining and training on 3D UNet architecture. The file also returns "model_x1_1.h5" file, which contains the saved model parameters. This file will be transferred and used for the next part of the project.
+2. **domain-shift-analysis**:
+3. **TransferLearning.ipynb** : This file trains the dataset using the generated h5 file in previous part. The certain amount of initial layers are frozen. The model trains on different modalities than those used before on get_data_ready.ipynb.
+4. Profiling Folder: The folder is further divided into 2 subfolders which contains profiling json files obtained during training first(get_data_ready.ipynb) and latter part(TransferLearning.ipynb). The folders also contains screenshot from different instances.
 ## Example commands to execute the code 
 Download the .ipynb file and run all the cells.
 
