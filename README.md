@@ -107,7 +107,7 @@ Download the .ipynb file and run all the cells.
 
 ## Results
 
-![images/results.png](https://github.com/utkarsh231/Transfer-Learning-Approach-to-optimize-3D-Brain-MRI-Segmentation/blob/main/images/results.png =100x80)
+![images/results.png](https://github.com/utkarsh231/Transfer-Learning-Approach-to-optimize-3D-Brain-MRI-Segmentation/blob/main/images/results.png = 70x)
 
 ## References 
 [1] O. Ronneberger, P. Fischer, and T. Brox, “U-NET: Convolutional Networks for Biomedical Image Segmentation,” in Lecture Notes in Computer Science, 2015, pp. 234–241. doi: 10.1007/978-3-319-24574-4_28
